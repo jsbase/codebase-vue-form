@@ -5,6 +5,22 @@
 		}
 	],
 	"settings": {
-		"eslint-service.packageManager": "yarn"
+		"eslint-service.packageManager": "yarn",
+		"files.exclude": {
+			"**/.git": true,
+			"**/.svn": true,
+			"**/.hg": true,
+			"**/CVS": true,
+			"**/.DS_Store": false,
+			"**/Thumbs.db": true,
+			"**/.lh": true,
+			"**/*cache": true,
+			"**/*DS_Store": true,
+			"**/*history": true,
+			"**/*tmp": true,
+			"**/node_modules": true,
+			"**/dist": true
+		},
+		"workspace.isHidden": false
 	}
 }

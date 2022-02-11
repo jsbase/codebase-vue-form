@@ -13,7 +13,6 @@ See [Vite Configuration Reference](https://vitejs.dev/config/).
 ## Project Setup
 
 ```sh
-yarn global add eslint prettier stylelint
 yarn install
 ```
 
@@ -34,3 +33,5 @@ yarn run build
 ```sh
 yarn run lint
 ```
+
+
