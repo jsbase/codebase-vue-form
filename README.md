@@ -1,7 +1,5 @@
----
 [![CodeQL](https://github.com/jsbase/codebase-vue-form/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/jsbase/codebase-vue-form/actions/workflows/codeql-analysis.yml)
----
-
+--
 # formkit-vue
 
 This template should help get you started developing with Vue 3 in Vite.
@@ -13,6 +11,7 @@ This template should help get you started developing with Vue 3 in Vite.
 ## Customize configuration
 
 See [Vite Configuration Reference](https://vitejs.dev/config/).
+
 
 ## Project Setup
 
