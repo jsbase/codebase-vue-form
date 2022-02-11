@@ -5,5 +5,5 @@
 </template>
 
 <script setup>
-import BasicForm from "@/components/BasicForm.vue";
+import BasicForm from "./components/BasicForm.vue";
 </script>

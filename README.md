@@ -33,5 +33,3 @@ yarn run build
 ```sh
 yarn run lint
 ```
-
-
