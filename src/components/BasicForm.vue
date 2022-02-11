@@ -4,7 +4,14 @@
   >
     <h1 class="text-4xl font-bold underline">BasicForm</h1>
 
-    <FormKit id="form" v-model="data" type="form">
+    <FormKit
+      id="form"
+      v-model="data"
+      type="form"
+      submit-label="Push the button"
+      autocomplete="off"
+      @submitHandler="handleSubmit"
+    >
       <FormKit
         type="text"
         name="firstname"
@@ -12,7 +19,7 @@
         placeholder="Firstname"
         validation="required"
         validation-visibility="live"
-        :classes="{ input: 'form-input px-4 py-3 rounded-full' }"
+        autocomplete="off"
       />
 
       <FormKit
@@ -22,7 +29,7 @@
         placeholder="Lastname"
         validation="required"
         validation-visibility="live"
-        :classes="{ input: 'form-input px-4 py-3 rounded-full' }"
+        autocomplete="off"
       />
 
       <FormKit
@@ -32,58 +39,55 @@
         help="Select your birthday"
         :validation="[['required'], ['date_between', latest, today]]"
         validation-visibility="live"
-        :classes="{ input: 'form-input px-4 py-3 rounded-full' }"
       />
 
+      <!--FormKit type="group" v-model="email"-->
       <FormKit
-        name="mailtype"
+        name="type"
         type="text"
         value="other"
-        :classes="{ input: 'form-input px-4 py-3 rounded-full' }"
+        validation="required"
+        validation-visibility="live"
       />
 
       <FormKit
-        name="mailvalue"
+        name="value"
         type="email"
         label="Email"
         help="Notice it takes a full second for the data to update."
         :delay="1000"
-        validation="required|length:5|email"
+        validation="required|email"
         validation-visibility="live"
-        :classes="{ input: 'form-input px-4 py-3 rounded-full' }"
       />
 
       <FormKit
-        name="mail-primary"
+        name="primary"
         type="checkbox"
-        label="Is prime?"
-        help="Is this your main email adress?"
-        :classes="{ input: 'form-checkbox px-4 py-3 rounded-full' }"
+        label="Is Primary"
+        help="Is this your main email account?"
+        validation="required"
+        validation-visibility="live"
+      />
+      <!--/FormKit-->
+
+      <FormKit
+        type="text"
+        name="phone"
+        label="Phone Number"
+        placeholder="01xxxxxxxx"
+        :validation="[['required'], ['matches', /^\d{11}$/]]"
+        :validation-messages="{
+          matches: 'Phone number must be formatted: 01xxxxxxxxx',
+        }"
+        validation-visibility="live"
+        autocomplete="off"
       />
     </FormKit>
-
-    <FormKit
-      type="text"
-      name="phone"
-      label="Phone Number"
-      placeholder="01xxxxxxxx"
-      :validation="[['required'], ['matches', /^\d{11}$/]]"
-      :validation-messages="{
-        matches: 'Phone number must be formatted: 01xxxxxxxxx',
-      }"
-      validation-visibility="dirty"
-      autocomplete="off"
-      :classes="{ input: 'form-input px-4 py-3 rounded-full' }"
-    />
-
-    <FormKit type="submit" help="Push this button to submit!" @click="submitHandler">Submit</FormKit>
   </div>
 
-  <h2>Results:</h2>
+  <h3 class="text-3xl font-bold">Results:</h3>
 
-  <pre>{{ emailtype }}</pre>
-  <pre>{{ emailvalue }}</pre>
-  <pre>{{ emailprimary }}</pre>
+  <h5 class="text-xl font-bold">Data:</h5>
   <pre>{{ data }}</pre>
 </template>
 
@@ -92,24 +96,16 @@ import { setErrors } from "@formkit/vue";
 import { ref } from "vue";
 
 const data = ref({});
-const mail = ref({});
 const latest = new Date("1978-01-01");
 const today = new Date();
 
+// eslint-disable-next-line no-unused-vars
 const submitHandler = async function () {
-  await new Promise((resolve) => setTimeout(() => {
-    // Object.assign(data.value, {
-    //   email: {
-    //     type: emailtype,
-    //     value: emailvalue,
-    //     primary: emailprimary,
-    //   }
-    // });
-
-    // console.log('Results: ', results); // eslint-disable-line
-
-    return resolve();
-  }, 2000));
+  await new Promise((resolve) =>
+    setTimeout(() => {
+      resolve();
+    }, 2000)
+  );
 
   setErrors("form", ["This isn't setup to actually do anything."]);
 };
