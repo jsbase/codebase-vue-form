@@ -41,13 +41,13 @@
         validation-visibility="live"
       />
 
-      <FormKit v-model="email" type="group">
-        <FormKit name="type" type="text" value="other" />
+      <FormKit v-model="email" name="email" type="group">
+        <FormKit label="Type" type="text" name="type" value="other" />
 
         <FormKit
           name="value"
           type="email"
-          label="Email"
+          label="E-mail"
           help="Notice it takes a full second for the data to update."
           :delay="1000"
           validation="required|email"
@@ -56,13 +56,26 @@
 
         <FormKit
           name="primary"
+          label="Prime"
           type="checkbox"
-          label="Is Primary"
           help="Is this your main email account?"
           validation="required"
           validation-visibility="live"
         />
       </FormKit>
+
+      <FormKit
+        type="text"
+        name="phone"
+        label="Phone Number"
+        placeholder="01xxxxxxxx"
+        :validation="[['required'], ['matches', /^\d{11}$/]]"
+        :validation-messages="{
+          matches: 'Phone number must be formatted: 01xxxxxxxxx',
+        }"
+        validation-visibility="live"
+        autocomplete="off"
+      />
     </FormKit>
   </div>
 
